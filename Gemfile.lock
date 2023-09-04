@@ -83,6 +83,7 @@ GEM
       regexp_parser (>= 1.5, < 3.0)
       xpath (~> 3.2)
     concurrent-ruby (1.2.2)
+    connection_pool (2.4.1)
     crass (1.0.6)
     cssbundling-rails (1.2.0)
       railties (>= 6.0.0)
@@ -97,6 +98,11 @@ GEM
       responders
       warden (~> 1.2.3)
     erubi (1.12.0)
+    et-orbi (1.2.7)
+      tzinfo
+    fugit (1.8.1)
+      et-orbi (~> 1, >= 1.2.7)
+      raabro (~> 1.4)
     globalid (1.2.0)
       activesupport (>= 6.1)
     i18n (1.14.1)
@@ -143,6 +149,7 @@ GEM
     public_suffix (5.0.3)
     puma (5.6.7)
       nio4r (~> 2.0)
+    raabro (1.4.0)
     racc (1.7.1)
     rack (2.2.8)
     rack-test (2.1.0)
@@ -179,6 +186,8 @@ GEM
     rdoc (6.5.0)
       psych (>= 4.0.0)
     redis (4.8.1)
+    redis-client (0.16.0)
+      connection_pool
     regexp_parser (2.8.1)
     reline (0.3.8)
       io-console (~> 0.5)
@@ -191,6 +200,15 @@ GEM
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
+    sidekiq (7.1.2)
+      concurrent-ruby (< 2)
+      connection_pool (>= 2.3.0)
+      rack (>= 2.2.4)
+      redis-client (>= 0.14.0)
+    sidekiq-cron (1.10.1)
+      fugit (~> 1.8)
+      globalid (>= 1.0.1)
+      sidekiq (>= 6)
     simple_form (5.1.0)
       actionpack (>= 5.2)
       activemodel (>= 5.2)
@@ -247,6 +265,8 @@ DEPENDENCIES
   rails (~> 7.0.0)
   redis (~> 4.0)
   selenium-webdriver
+  sidekiq
+  sidekiq-cron
   simple_form (~> 5.1.0)
   sprockets-rails
   stimulus-rails

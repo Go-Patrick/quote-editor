@@ -1,0 +1,13 @@
+---
+:verbose: false
+:concurrency: 10
+:timeout: 25
+
+:queues:
+  - critical
+  - high
+  - default
+  - low
+
+production:
+  :concurrency: <%= ENV['SIDEKIQ_CONCURRENCY'] || 25 %>

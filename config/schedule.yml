@@ -1,0 +1,4 @@
+clean_quote_job:
+  cron: '0 * * * *'
+  class: 'CleanQuoteJob'
+  queue: default
