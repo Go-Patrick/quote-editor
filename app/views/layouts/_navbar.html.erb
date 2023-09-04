@@ -1,7 +1,7 @@
 <header class="navbar">
   <% if user_signed_in? %>
     <div class="navbar__brand">
-      <%= current_company.name %>
+      <%= link_to current_company.name, root_path %>
     </div>
     <div class="navbar__name">
       <%= current_user.name %>
@@ -11,6 +11,9 @@
                   method: :delete,
                   class: "btn btn--dark" %>
   <% else %>
+    <div class="navbar__brand">
+      <%= link_to "Quoter", root_path %>
+    </div>
     <%= link_to "Sign in",
                 new_user_session_path,
                 class: "btn btn--dark navbar__right" %>
