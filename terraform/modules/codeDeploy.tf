@@ -1,47 +1,13 @@
-# resource "aws_codedeploy_app" "deploy" {
-#   name = "demo1"
-# }
+resource "aws_codedeploy_app" "deploy" {
+  name = "quote-editor"
+}
 
-# resource "aws_sns_topic" "sns" {
-#   name = "quote-topic"
-# }
+resource "aws_codedeploy_deployment_group" "example" {
+  app_name              = aws_codedeploy_app.deploy.name
+  deployment_group_name = "quote-group"
+  service_role_arn      = var.code_deploy_role_arn
 
-# resource "aws_codedeploy_deployment_group" "example" {
-#   app_name              = aws_codedeploy_app.example.name
-#   deployment_group_name = "example-group"
-#   service_role_arn      = var.code_deploy_role_arn
+  autoscaling_groups = [aws_autoscaling_group.demo1_ag.id]
 
-#   ec2_tag_set {
-#     ec2_tag_filter {
-#       key   = "filterkey1"
-#       type  = "KEY_AND_VALUE"
-#       value = "filtervalue"
-#     }
-
-#     ec2_tag_filter {
-#       key   = "filterkey2"
-#       type  = "KEY_AND_VALUE"
-#       value = "filtervalue"
-#     }
-#   }
-
-#   trigger_configuration {
-#     trigger_events     = ["DeploymentFailure"]
-#     trigger_name       = "example-trigger"
-#     trigger_target_arn = aws_sns_topic.example.arn
-#   }
-
-#   auto_rollback_configuration {
-#     enabled = true
-#     events  = ["DEPLOYMENT_FAILURE"]
-#   }
-
-#   alarm_configuration {
-#     alarms  = ["my-alarm-name"]
-#     enabled = true
-#   }
-
-#   outdated_instances_strategy = "UPDATE"
-
-# }
-
+  deployment_config_name = "CodeDeployDefault.OneAtATime"
+}

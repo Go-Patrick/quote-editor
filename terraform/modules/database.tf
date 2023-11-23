@@ -49,4 +49,5 @@ resource "aws_db_instance" "postgres" {
 
 output "database_url" {
   value = aws_db_instance.postgres.address
+  description = "Url address of database"
 }
