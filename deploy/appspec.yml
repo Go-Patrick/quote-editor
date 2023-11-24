@@ -1,0 +1,21 @@
+version: 0.2
+os: linux
+
+files:
+  - source: docker-compose.yml
+    destination: /home/ec2-user/app
+  - source: nginx.conf
+    destination: /home/ec2-user/app
+  - source: .env
+    destination: /home/ec2-user/app
+  - source: scripts
+    destination: /home/ec2-user/app
+
+phases:
+  pre_build:
+    commands:
+      - scripts/predeploy.sh
+
+  applicationStart:
+    commands:
+      - scripts/deploy.sh
