@@ -1,5 +1,4 @@
 #!/bin/bash
-aws cloudwatch put-metric-data --namespace "AWS/CodeDeploy" --metric-name "DeploymentStatus" --value 1 --dimensions "DeploymentGroupName=quote-group,ApplicationName=quote-editor"
 source_file=".source"
 echo "" > "$source_file"
 # Read each line from .env and export variables to .source
