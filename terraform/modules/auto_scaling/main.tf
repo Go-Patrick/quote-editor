@@ -15,6 +15,10 @@ resource "aws_launch_template" "amazon_linux" {
     security_groups = [var.security_group]
   }
 
+  iam_instance_profile {
+    arn = "arn:aws:iam::932782693588:instance-profile/CodeDeployDemo-EC2-Instance-Profile"
+  }
+
   user_data = filebase64(var.userdata_path)
 }
 
