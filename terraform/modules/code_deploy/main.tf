@@ -7,7 +7,7 @@ resource "aws_codedeploy_deployment_group" "example" {
   deployment_group_name = "quote-group"
   service_role_arn      = var.code_deploy_role_arn
 
-  autoscaling_groups = [aws_autoscaling_group.demo1_ag.id]
+  autoscaling_groups = [var.auto_scaling_group_id]
 
   deployment_config_name = "CodeDeployDefault.OneAtATime"
 }

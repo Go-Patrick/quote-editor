@@ -2,11 +2,6 @@ resource "aws_s3_bucket" "bucket" {
   bucket = var.s3_bucket_name
 }
 
-# resource "aws_s3_bucket_acl" "bucket_acl" {
-#   bucket = aws_s3_bucket.bucket.id
-#   acl    = "private"
-# }
-
 resource "aws_s3_bucket_versioning" "bucket_versioning" {
   bucket = aws_s3_bucket.bucket.id
   versioning_configuration {
@@ -32,7 +27,7 @@ data "aws_iam_policy_document" "s3_policy" {
     principals {
       type = "AWS"
       identifiers = ["${var.code_deploy_role_arn}","${var.iam_user_arn}"]
-    } 
+    }
   }
 }
 

@@ -1,7 +1,7 @@
 resource "aws_lb_target_group" "demo_tg" {
   name        = "demo-tg"
   port        = 80
-  vpc_id      = aws_vpc.main.id
+  vpc_id      = var.vpc
   protocol    = "HTTP"
 
   health_check {
@@ -13,8 +13,8 @@ resource "aws_lb" "demo_lb" {
   name               = "demo-lb"
   internal           = false
   load_balancer_type = "application"
-  security_groups    = [aws_security_group.public_sg.id]
-  subnets            = [aws_subnet.public_3.id,aws_subnet.public_4.id]
+  security_groups    = [var.security_group]
+  subnets            = [var.subnet_1,var.subnet_2]
 
   tags = {
     Name = "demo-lb"
@@ -22,7 +22,7 @@ resource "aws_lb" "demo_lb" {
 }
 
 resource "aws_autoscaling_attachment" "attach" {
-  autoscaling_group_name = aws_autoscaling_group.demo1_ag.name
+  autoscaling_group_name = var.auto_scaling_group_name
   lb_target_group_arn = aws_lb_target_group.demo_tg.arn
 }
 

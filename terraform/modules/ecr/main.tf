@@ -1,5 +1,5 @@
 resource "aws_ecr_repository" "ecr" {
-  name = "quote-app"
+  name = var.repo_name
 
   image_scanning_configuration {
     scan_on_push = true
@@ -19,7 +19,7 @@ resource "aws_ecr_lifecycle_policy" "foopolicy" {
                 "tagStatus": "tagged",
                 "tagPrefixList": ["v"],
                 "countType": "imageCountMoreThan",
-                "countNumber": 30
+                "countNumber": 10
             },
             "action": {
                 "type": "expire"
@@ -28,9 +28,4 @@ resource "aws_ecr_lifecycle_policy" "foopolicy" {
     ]
 }
 EOF
-}
-
-output "ecr_url" {
-  value = aws_ecr_repository.ecr.repository_url
-  description = "The URL of the ECR repository"
 }

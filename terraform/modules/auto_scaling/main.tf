@@ -5,17 +5,17 @@ resource "aws_key_pair" "test_key_pair" {
 
 resource "aws_launch_template" "amazon_linux" {
   name_prefix          = "demo1-tpl"
-  image_id             = data.aws_ami.amazon_linux.id
+  image_id             = var.linux_ami_id
   instance_type        = "t2.micro"
   key_name = aws_key_pair.test_key_pair.key_name
   # security_group_names = [aws_security_group.public_sg.id]
 
   network_interfaces {
     associate_public_ip_address = true
-    security_groups = [aws_security_group.public_sg.id]
+    security_groups = [var.security_group]
   }
 
-  user_data = filebase64("modules/userdata.tpl")
+  user_data = filebase64(var.userdata_path)
 }
 
 resource "aws_autoscaling_group" "demo1_ag" {
@@ -24,7 +24,7 @@ resource "aws_autoscaling_group" "demo1_ag" {
   min_size             = 1
   max_size             = 1
   health_check_type    = "EC2"
-  vpc_zone_identifier  = [aws_subnet.public_1.id, aws_subnet.public_2.id]
+  vpc_zone_identifier  = [var.subnet_1,var.subnet_2]
   termination_policies = ["OldestInstance"]
 
   launch_template {
