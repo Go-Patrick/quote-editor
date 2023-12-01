@@ -35,7 +35,7 @@ pipeline {
                     script {
                         try{
                             sh 'cat $ENV_FILE > .env'
-                            sh 'cp .env /deploy/.env'
+                            sh 'cat $ENV_FILE > /deploy/.env'
                             docker.withRegistry("https://" + "${env.ECR_URL}", 'ecr:ap-southeast-1:patrick-demo-1') {
                                 def IMAGE_NAME="${env.ECR_URL}/${env.ECR_REPO_APP}:${env.SHORT_COMMIT}"
                                 def customImage = docker.build("$IMAGE_NAME", "-f Dockerfile .")
