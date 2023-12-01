@@ -35,7 +35,6 @@ pipeline {
                     script {
                         try{
                             sh 'cat $ENV_FILE > .env'
-                            sh 'source .env'
                             sh 'cp .env /deploy/.env'
                             docker.withRegistry("https://" + "${env.ECR_URL}", 'ecr:ap-southeast-1:patrick-demo-1') {
                                 def IMAGE_NAME="${env.ECR_URL}/${env.ECR_REPO_APP}:${env.SHORT_COMMIT}"
@@ -63,7 +62,7 @@ pipeline {
                         withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: "${AWS_CREDENTIALS_ID}"]]){
                             sh '''
                             cd deploy
-                            aws deploy push --application-name quote-editor --s3-location s3://codedeploydemobucket/deploy.zip
+                            aws deploy push --application-name quote-editor --s3-location s3://quote-editor-deploy-bucket/deploy.zip
                             '''
                         }
                     } catch (Exception e) {
