@@ -85,7 +85,7 @@ pipeline {
                         withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: "${AWS_CREDENTIALS_ID}"]]){
                             sh '''
                             aws deploy create-deployment --application-name quote-editor \\
-                            --deployment-config-name CodeDeployDefault.OneAtATime \\ 
+                            --deployment-config-name CodeDeployDefault.OneAtATime \\
                             --deployment-group-name quote-group \\
                             --s3-location bucket=quote-editor-deploy-bucket,bundleType=zip,key=deploy.zip
                             '''
