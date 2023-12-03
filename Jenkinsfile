@@ -34,9 +34,9 @@ pipeline {
                 withCredentials([file(credentialsId: "${env.ENV_FILE_CREDENTIAL_ID}", variable: 'ENV_FILE')]) {
                     script {
                         try{
-                            sh "echo \"IMAGE_VERSION=${env.SHORT_COMMIT}\" >> $ENV_FILE"
                             sh 'cat $ENV_FILE > .env'
                             sh 'cd deploy && cat $ENV_FILE > .env'
+                            sh "echo \"IMAGE_VERSION=${env.SHORT_COMMIT}\" >> deploy/.env"
                             docker.withRegistry("https://" + "${env.ECR_URL}", 'ecr:ap-southeast-1:patrick-demo-1') {
                                 def IMAGE_NAME="${env.ECR_URL}:${env.SHORT_COMMIT}"
                                 def customImage = docker.build("$IMAGE_NAME", "-f Dockerfile .")
