@@ -8,8 +8,11 @@ files:
     destination: /home/ec2-user/app
   - source: .env
     destination: /home/ec2-user/app
+  - source: scripts/deploy.sh
+    destination: /home/ec2-user/app
 
 phases:
   applicationStart:
     commands:
-      - scripts/deploy.sh
+      - chmod +x /home/ec2-user/app/scripts/deploy.sh
+      - /home/ec2-user/app/scripts/deploy.sh
