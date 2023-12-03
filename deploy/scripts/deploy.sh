@@ -1,5 +1,5 @@
 #!/bin/bash
-mkdir /home/ec2-user/app/app.log >> /home/ec2-user/app/app.log
+mkdir -p /home/ec2-user/app/app.log >> /home/ec2-user/app/app.log
 
 env_file="/home/ec2-user/app/.env"
 source ${env_file}
