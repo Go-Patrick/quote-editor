@@ -8,8 +8,6 @@ files:
     destination: /home/ec2-user/app
   - source: .env
     destination: /home/ec2-user/app
-  - source: scripts
-    destination: /home/ec2-user/app
 
 phases:
   applicationStart:

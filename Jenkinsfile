@@ -61,6 +61,7 @@ pipeline {
                 script {
                     try{
                         withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: "${AWS_CREDENTIALS_ID}"]]){
+                            sh 'chmod +x deploy/scripts/deploy.sh'
                             sh '''
                             cd deploy
                             aws deploy push --application-name quote-editor --s3-location s3://quote-editor-deploy-bucket/deploy.zip
