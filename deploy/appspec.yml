@@ -8,8 +8,6 @@ files:
     destination: /home/ec2-user/app
   - source: .env
     destination: /home/ec2-user/app
-  - source: scripts/deploy.sh
-    destination: /home/ec2-user/app
 
 permissions:
   - object: scripts/deploy.sh
@@ -22,6 +20,6 @@ hooks:
     - location: scripts/dummy.sh
       timeout: 300
       runas: root
-  AfterInstall:
-    - location: scripts/dummy.sh
+  ApplicationStart:
+    - location: scripts/deploy.sh
       timeout: 300
