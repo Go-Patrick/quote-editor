@@ -12,10 +12,6 @@ files:
     destination: /home/ec2-user/app
 
 phases:
-  pre_build:
-    commands:
-      - scripts/predeploy.sh
-
   applicationStart:
     commands:
       - scripts/deploy.sh
