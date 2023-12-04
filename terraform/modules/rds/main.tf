@@ -1,33 +1,8 @@
-resource "aws_security_group" "db_sg" {
-  name = "demo1-rds-sg"
-  description = "Security group for RDS"
-  vpc_id = aws_vpc.main.id
-
-  ingress {
-    description = "Allow request from ec2 instance"
-    from_port = 5432
-    to_port = 5432
-    protocol = "tcp"
-    security_groups = [aws_security_group.public_sg.id]
-  }
-
-  egress {
-    from_port = 0
-    to_port = 0
-    protocol = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
-  tags = {
-    "Name" = "demo1-rds-sg"
-  }
-}
-
 resource "aws_db_subnet_group" "db_subnet_group" {
   name = "db-subnets"
   description = "Subnet group for private database"
 
-  subnet_ids = [aws_subnet.private_1.id, aws_subnet.private_2.id]
+  subnet_ids = [var.subnet_1, var.subnet_2]
 }
 
 resource "aws_db_instance" "postgres" {
@@ -42,7 +17,7 @@ resource "aws_db_instance" "postgres" {
   password               = var.db_password
   publicly_accessible    = false
   # parameter_group_name   = "default.postgres12"
-  vpc_security_group_ids = [aws_security_group.db_sg.id]
+  vpc_security_group_ids = [var.db_sg]
   db_subnet_group_name = aws_db_subnet_group.db_subnet_group.id
   skip_final_snapshot    = true
 }

@@ -1,0 +1,25 @@
+version: 0.0
+os: linux
+
+files:
+  - source: docker-compose.yml
+    destination: /home/ec2-user/app
+  - source: nginx.conf
+    destination: /home/ec2-user/app
+  - source: .env
+    destination: /home/ec2-user/app
+
+permissions:
+  - object: scripts/deploy.sh
+    pattern: +x
+  - object: scripts/dummy.sh
+    pattern: +x
+
+hooks:
+  BeforeInstall:
+    - location: scripts/dummy.sh
+      timeout: 300
+      runas: root
+  ApplicationStart:
+    - location: scripts/deploy.sh
+      timeout: 300

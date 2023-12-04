@@ -1,7 +1,7 @@
 version: '3.3'
 services:
   webapp:
-    image: phatnguyen1812/rails-app:latest
+    image: 932782693588.dkr.ecr.ap-southeast-1.amazonaws.com/quote-app:${IMAGE_VERSION}
     container_name: quote-editor
     env_file:
       - .env
@@ -13,7 +13,7 @@ services:
       - public_assets:/app/public
 
   sidekiq:
-    image: phatnguyen1812/rails-app:latest
+    image: 932782693588.dkr.ecr.ap-southeast-1.amazonaws.com/quote-app:${IMAGE_VERSION}
     container_name: quote-sidekiq
     env_file:
       - .env
