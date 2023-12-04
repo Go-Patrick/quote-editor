@@ -61,6 +61,7 @@ terraform/override.tf
 terraform/override.tf.json
 terraform/*_override.tf
 terraform/*_override.tf.json
+terraform/.terraform.lock.hcl
 
 terraform/userdata.tpl
 
