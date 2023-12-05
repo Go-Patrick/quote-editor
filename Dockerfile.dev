@@ -1,0 +1,22 @@
+FROM ruby:3.1.4
+
+RUN apt-get update
+RUN apt-get install -y libvips libvips-dev libvips-tools
+
+RUN curl -sL https://deb.nodesource.com/setup_18.x | bash -
+RUN apt-get install -y nodejs
+RUN npm install --global yarn
+
+RUN yarn add sass
+
+RUN mkdir -p /app
+WORKDIR /app
+COPY . /app
+
+RUN bin/setup
+RUN bin/rails assets:precompile
+RUN chmod +x /app/bin/docker-entrypoint
+
+ENTRYPOINT ["/app/bin/docker-entrypoint"]
+EXPOSE 3000
+CMD ["bin/dev"]
