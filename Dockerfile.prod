@@ -26,7 +26,7 @@ RUN bin/setup
 RUN bin/rails assets:precompile
 
 RUN chmod +x /app/bin/docker-entrypoint
-RUN chomd +x /app/bin/prod
+RUN chmod +x /app/bin/prod
 ENTRYPOINT ["/app/bin/docker-entrypoint"]
 
 VOLUME ["/app/public"]
