@@ -1,14 +1,13 @@
-resource "aws_key_pair" "test_key_pair" {
+resource "aws_key_pair" "app_key_pair" {
   key_name   = "demo1-key"
   public_key = file("~/.ssh/id_ed25519.pub")
 }
 
-resource "aws_launch_template" "amazon_linux" {
+resource "aws_launch_template" "amazon_linux_template" {
   name_prefix          = "demo1-tpl"
   image_id             = var.linux_ami_id
   instance_type        = "t2.micro"
-  key_name = aws_key_pair.test_key_pair.key_name
-  # security_group_names = [aws_security_group.public_sg.id]
+  key_name = aws_key_pair.app_key_pair.key_name
 
   network_interfaces {
     associate_public_ip_address = true
@@ -16,38 +15,38 @@ resource "aws_launch_template" "amazon_linux" {
   }
 
   iam_instance_profile {
-    arn = "arn:aws:iam::932782693588:instance-profile/CodeDeployDemo-EC2-Instance-Profile"
+    arn = var.iam_instance_profile_arn
   }
 
   user_data = filebase64(var.userdata_path)
 }
 
-resource "aws_autoscaling_group" "demo1_ag" {
+resource "aws_autoscaling_group" "app_ag" {
   name                 = "demo1-ag"
   desired_capacity     = 1
   min_size             = 1
   max_size             = 1
   health_check_type    = "EC2"
-  vpc_zone_identifier  = [var.subnet_1,var.subnet_2]
+  vpc_zone_identifier  = var.subnet_list
   termination_policies = ["OldestInstance"]
 
   launch_template {
-    id      = aws_launch_template.amazon_linux.id
+    id      = aws_launch_template.amazon_linux_template.id
     version = "$Latest"
   }
 }
 
-resource "aws_autoscaling_policy" "test_policy" {
+resource "aws_autoscaling_policy" "app_ag_policy" {
   name                   = "test-policy"
-  autoscaling_group_name = aws_autoscaling_group.demo1_ag.name
+  autoscaling_group_name = aws_autoscaling_group.app_ag.name
   adjustment_type        = "ChangeInCapacity"
   scaling_adjustment     = -1
   cooldown               = 120
 }
 
-resource "aws_cloudwatch_metric_alarm" "scale_down" {
+resource "aws_cloudwatch_metric_alarm" "app_scale_metric" {
   alarm_description   = "Monitors CPU utilization"
-  alarm_actions       = [aws_autoscaling_policy.test_policy.arn]
+  alarm_actions       = [aws_autoscaling_policy.app_ag_policy.arn]
   alarm_name          = "test_scale_down"
   comparison_operator = "LessThanOrEqualToThreshold"
   namespace           = "AWS/EC2"
@@ -58,6 +57,6 @@ resource "aws_cloudwatch_metric_alarm" "scale_down" {
   statistic           = "Average"
 
   dimensions = {
-    AutoScalingGroupName = aws_autoscaling_group.demo1_ag.id
+    AutoScalingGroupName = aws_autoscaling_group.app_ag.id
   }
 }

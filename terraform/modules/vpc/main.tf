@@ -29,6 +29,12 @@ resource "aws_subnet" "load_balance_2" {
   cidr_block = var.vpc_subnet_cidr_block[1]
 }
 
+resource "aws_subnet" "rds_control_subnet" {
+  vpc_id = aws_vpc.main.id
+  availability_zone   = "ap-southeast-1a"
+  cidr_block = var.vpc_subnet_cidr_block[2]
+}
+
 resource "aws_subnet" "rds_1" {
   vpc_id = aws_vpc.main.id
   availability_zone = "ap-southeast-1a"
@@ -76,6 +82,11 @@ resource "aws_route_table_association" "load_balance_1" {
 resource "aws_route_table_association" "load_balance_2" {
   route_table_id = aws_route_table.public_rt.id
   subnet_id = aws_subnet.load_balance_2.id
+}
+
+resource "aws_route_table_association" "rsd_control" {
+  route_table_id = aws_route_table.public_rt.id
+  subnet_id = aws_subnet.rds_control_subnet.id
 }
 
 resource "aws_route_table" "private_rt" {
@@ -139,6 +150,33 @@ resource "aws_security_group" "elb_sg" {
 
   tags = {
     "Name" = "demo1-elb-sg"
+  }
+}
+
+resource "aws_security_group" "rsd_controller_sg" {
+  name = "demo1-rds-control-sg"
+  description = "Security group for ec2 instances for managing RDS"
+
+  vpc_id = aws_vpc.main.id
+
+  ingress {
+    description = "Allow SSH request"
+    from_port = 22
+    to_port = 22
+    protocol = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  egress {
+    description = "Allow all outbound traffic"
+    from_port = 0
+    to_port = 0
+    protocol = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  tags = {
+    "Name" = "demo1-rds-control-sg"
   }
 }
 
@@ -220,7 +258,7 @@ resource "aws_security_group" "db_sg" {
     from_port = 5432
     to_port = 5432
     protocol = "tcp"
-    security_groups = [aws_security_group.public_sg.id]
+    security_groups = [aws_security_group.public_sg.id, aws_security_group.rsd_controller_sg.id]
   }
 
   egress {

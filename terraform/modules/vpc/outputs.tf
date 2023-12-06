@@ -10,6 +10,10 @@ output "subnet_load_balance_2" {
   value = aws_subnet.load_balance_2
 }
 
+output "subnet_rds_control" {
+  value = aws_subnet.rds_control_subnet
+}
+
 output "subnet_auto_scaling_1" {
   value = aws_subnet.auto_scaling_1
 }
@@ -44,4 +48,7 @@ output "rds_sg" {
 
 output "redis_sg" {
   value = aws_security_group.redis_sg
+}
+output "rds_control_sg" {
+  value = aws_security_group.rsd_controller_sg
 }

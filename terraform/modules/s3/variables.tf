@@ -1,14 +1,14 @@
 variable "code_deploy_role_arn" {
   type = string
-  default = "arn:aws:iam::932782693588:role/IAMCodeDeployRole"
+  description = "ARN of code deploy role"
 }
 
 variable "s3_bucket_name" {
   type = string
-  default = "quote-editor-deploy-bucket"
+  description = "Unique name for S3 storage of bucket used for deployment"
 }
 
 variable "iam_user_arn" {
   type = string
-  default = "932782693588"
+  description = "IAM user arn"
 }

@@ -1,4 +1,4 @@
-resource "aws_ecr_repository" "ecr" {
+resource "aws_ecr_repository" "app_registry" {
   name = var.repo_name
 
   image_scanning_configuration {
@@ -6,8 +6,8 @@ resource "aws_ecr_repository" "ecr" {
   }
 }
 
-resource "aws_ecr_lifecycle_policy" "foopolicy" {
-  repository = aws_ecr_repository.ecr.name
+resource "aws_ecr_lifecycle_policy" "app_ecr_lifecycle" {
+  repository = aws_ecr_repository.app_registry.name
 
   policy = <<EOF
 {
