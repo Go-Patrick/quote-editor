@@ -6,7 +6,7 @@ pipeline {
         ECR_URL = "932782693588.dkr.ecr.ap-southeast-1.amazonaws.com/quote-app"
         AWS_CREDENTIALS_ID = "patrick-demo-1"
         ENV_FILE_CREDENTIAL_ID = "quote-env"
-        ECR_REPO_APP = "quote-app"
+        ECR_REPO_APP = "quote-app-default"
     }
 
     stages {

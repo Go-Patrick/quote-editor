@@ -3,6 +3,12 @@ services:
   webapp:
     image: 932782693588.dkr.ecr.ap-southeast-1.amazonaws.com/quote-app:${IMAGE_VERSION}
     container_name: quote-editor
+    logging:
+      driver: awslogs
+      options:
+        awslogs-group: ${log_group_name}
+        awslogs-region: ap-southeast-1
+        awslogs-stream-prefix: docker
     env_file:
       - .env
     ports:
@@ -21,6 +27,12 @@ services:
     volumes:
       - public_assets:/var/www/quote-site/public
       - ./nginx.conf:/etc/nginx/conf.d/default.conf
+    logging:
+      driver: awslogs
+      options:
+        awslogs-group: ${log_group_name}
+        awslogs-region: ap-southeast-1
+        awslogs-stream-prefix: docker
 
 volumes:
   public_assets:

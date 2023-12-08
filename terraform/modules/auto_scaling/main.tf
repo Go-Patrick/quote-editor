@@ -3,6 +3,18 @@ resource "aws_key_pair" "app_key_pair" {
   public_key = file("~/.ssh/id_ed25519.pub")
 }
 
+resource "aws_cloudwatch_log_group" "app_asl_logs" {
+  name = "/aws/my-auto-scaling-group"
+}
+
+data "template_file" "user_data" {
+  template = filebase64(var.userdata_path)
+
+  vars = {
+    log_group_name = aws_cloudwatch_log_group.app_asl_logs.name
+  }
+}
+
 resource "aws_launch_template" "amazon_linux_template" {
   name_prefix          = "demo1-tpl-${terraform.workspace}"
   image_id             = var.linux_ami_id
@@ -18,7 +30,7 @@ resource "aws_launch_template" "amazon_linux_template" {
     arn = var.iam_instance_profile_arn
   }
 
-  user_data = filebase64(var.userdata_path)
+  user_data = data.template_file.user_data.rendered
 }
 
 resource "aws_autoscaling_group" "app_ag" {
