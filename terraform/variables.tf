@@ -3,3 +3,7 @@ variable "db_password" {}
 variable "db_name" {}
 variable "db_identifier" {}
 variable "ecr_repo_name" {}
+variable "code_deploy_role_arn" {}
+variable "s3_bucket_name" {}
+variable "iam_user_arn" {}
+variable "iam_instance_profile_arn" {}

@@ -1,11 +1,11 @@
 resource "aws_db_subnet_group" "db_subnet_group" {
-  name = "db-subnets"
+  name = "db-subnets-${terraform.workspace}"
   description = "Subnet group for private database"
 
-  subnet_ids = [var.subnet_1, var.subnet_2]
+  subnet_ids = var.subnet_list
 }
 
-resource "aws_db_instance" "postgres" {
+resource "aws_db_instance" "app_db_instance" {
   allocated_storage      = 20
   storage_type           = "gp2"
   engine                 = "postgres"
@@ -16,13 +16,7 @@ resource "aws_db_instance" "postgres" {
   username               = var.db_username
   password               = var.db_password
   publicly_accessible    = false
-  # parameter_group_name   = "default.postgres12"
-  vpc_security_group_ids = [var.db_sg]
+  vpc_security_group_ids = var.db_sg
   db_subnet_group_name = aws_db_subnet_group.db_subnet_group.id
   skip_final_snapshot    = true
-}
-
-output "database_url" {
-  value = aws_db_instance.postgres.address
-  description = "Url address of database"
 }

@@ -1,1 +1,4 @@
-variable "repo_name" {}
+variable "repo_name" {
+  type = string
+  description = "ECR registry name"
+}

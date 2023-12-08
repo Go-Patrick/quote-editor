@@ -24,10 +24,10 @@ pipeline {
             }
         }
         stage('Build Docker image') {
-            when {
+             when {
                 anyOf {
-                    branch 'main'
-                    branch 'feat/jenkins-implement'
+                    branch 'main';
+                    branch 'dev'
                 }
             }
             steps {
@@ -39,7 +39,7 @@ pipeline {
                             sh "echo \"\nIMAGE_VERSION=${env.SHORT_COMMIT}\" >> deploy/.env"
                             docker.withRegistry("https://" + "${env.ECR_URL}", 'ecr:ap-southeast-1:patrick-demo-1') {
                                 def IMAGE_NAME="${env.ECR_URL}:${env.SHORT_COMMIT}"
-                                def customImage = docker.build("$IMAGE_NAME", "-f Dockerfile .")
+                                def customImage = docker.build("$IMAGE_NAME", "--build-arg RAILS_ENV=production -f Dockerfile.prod .")
                                 customImage.push()
                             }
                         } catch (Exception e) {
@@ -51,10 +51,10 @@ pipeline {
             }
         }
         stage('Upload new deploy file') {
-            when {
+             when {
                 anyOf {
-                    branch 'main'
-                    branch 'feat/jenkins-implement'
+                    branch 'main';
+                    branch 'dev'
                 }
             }
             steps {
@@ -75,10 +75,10 @@ pipeline {
             }
         }
         stage('Deploy new application') {
-            when {
+             when {
                 anyOf {
-                    branch 'main'
-                    branch 'feat/jenkins-implement'
+                    branch 'main';
+                    branch 'dev'
                 }
             }
             steps {
