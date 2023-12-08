@@ -37,8 +37,8 @@ pipeline {
                             sh 'cat $ENV_FILE > .env'
                             sh 'cd deploy && cat $ENV_FILE > .env'
                             sh "echo \"\nIMAGE_VERSION=${env.SHORT_COMMIT}\" >> deploy/.env"
-                            docker.withRegistry("https://" + "${env.ECR_URL}", 'ecr:ap-southeast-1:patrick-demo-1') {
-                                def IMAGE_NAME="${env.ECR_URL}:${env.SHORT_COMMIT}"
+                            docker.withRegistry("https://" + "${env.ECR_URL}-default", 'ecr:ap-southeast-1:patrick-demo-1') {
+                                def IMAGE_NAME="${env.ECR_URL}-default:${env.SHORT_COMMIT}"
                                 def customImage = docker.build("$IMAGE_NAME", "--build-arg RAILS_ENV=production -f Dockerfile.prod .")
                                 customImage.push()
                             }

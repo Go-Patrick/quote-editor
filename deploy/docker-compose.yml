@@ -1,7 +1,7 @@
 version: '3.9'
 services:
   webapp:
-    image: 932782693588.dkr.ecr.ap-southeast-1.amazonaws.com/quote-app:${IMAGE_VERSION}
+    image: 932782693588.dkr.ecr.ap-southeast-1.amazonaws.com/quote-app-default:${IMAGE_VERSION}
     container_name: quote-editor
     logging:
       driver: awslogs
