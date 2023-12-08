@@ -1,5 +1,5 @@
 resource "aws_elasticache_subnet_group" "redis_subnets" {
-  name = "redis-subnets"
+  name = "redis-subnets-${terraform.workspace}"
   subnet_ids = var.subnet_list
 }
 

@@ -1,10 +1,10 @@
 resource "aws_key_pair" "app_key_pair" {
-  key_name   = "demo1-key"
+  key_name   = "demo1-key-${terraform.workspace}"
   public_key = file("~/.ssh/id_ed25519.pub")
 }
 
 resource "aws_launch_template" "amazon_linux_template" {
-  name_prefix          = "demo1-tpl"
+  name_prefix          = "demo1-tpl-${terraform.workspace}"
   image_id             = var.linux_ami_id
   instance_type        = "t2.micro"
   key_name = aws_key_pair.app_key_pair.key_name
@@ -22,7 +22,7 @@ resource "aws_launch_template" "amazon_linux_template" {
 }
 
 resource "aws_autoscaling_group" "app_ag" {
-  name                 = "demo1-ag"
+  name                 = "demo1-ag-${terraform.workspace}"
   desired_capacity     = 1
   min_size             = 1
   max_size             = 1
@@ -37,7 +37,7 @@ resource "aws_autoscaling_group" "app_ag" {
 }
 
 resource "aws_autoscaling_policy" "app_ag_policy" {
-  name                   = "test-policy"
+  name                   = "test-policy-${terraform.workspace}"
   autoscaling_group_name = aws_autoscaling_group.app_ag.name
   adjustment_type        = "ChangeInCapacity"
   scaling_adjustment     = -1

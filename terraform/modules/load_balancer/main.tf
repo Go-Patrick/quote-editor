@@ -1,5 +1,5 @@
 resource "aws_lb_target_group" "app_tg" {
-  name        = "demo-tg"
+  name        = "demoq-tg-${terraform.workspace}"
   port        = 80
   vpc_id      = var.vpc
   protocol    = "HTTP"
@@ -10,14 +10,14 @@ resource "aws_lb_target_group" "app_tg" {
 }
 
 resource "aws_lb" "app_elb" {
-  name               = "demo-lb"
+  name               = "demoq-lb-${terraform.workspace}"
   internal           = false
   load_balancer_type = "application"
   security_groups    = [var.security_group]
   subnets            = var.subnet_list
 
   tags = {
-    Name = "demo-lb"
+    Name = "demo1-lb-${terraform.workspace}"
   }
 }
 

@@ -1,5 +1,5 @@
 resource "aws_db_subnet_group" "db_subnet_group" {
-  name = "db-subnets"
+  name = "db-subnets-${terraform.workspace}"
   description = "Subnet group for private database"
 
   subnet_ids = var.subnet_list

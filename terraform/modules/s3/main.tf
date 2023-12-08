@@ -1,5 +1,5 @@
 resource "aws_s3_bucket" "app_bucket" {
-  bucket = var.s3_bucket_name
+  bucket = "${var.s3_bucket_name}-${terraform.workspace}"
 }
 
 resource "aws_s3_bucket_versioning" "app_bucket_versioning" {

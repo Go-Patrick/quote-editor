@@ -24,6 +24,12 @@ pipeline {
             }
         }
         stage('Build Docker image') {
+             when {
+                anyOf {
+                    branch 'main';
+                    branch 'dev'
+                }
+            }
             steps {
                 withCredentials([file(credentialsId: "${env.ENV_FILE_CREDENTIAL_ID}", variable: 'ENV_FILE')]) {
                     script {
@@ -45,6 +51,12 @@ pipeline {
             }
         }
         stage('Upload new deploy file') {
+             when {
+                anyOf {
+                    branch 'main';
+                    branch 'dev'
+                }
+            }
             steps {
                 script {
                     try{
@@ -63,6 +75,12 @@ pipeline {
             }
         }
         stage('Deploy new application') {
+             when {
+                anyOf {
+                    branch 'main';
+                    branch 'dev'
+                }
+            }
             steps {
                 script {
                     try{

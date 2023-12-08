@@ -5,7 +5,7 @@ resource "aws_vpc" "main" {
   enable_dns_support = "true"
 
   tags = {
-    "Name" = "demo1-vpc"
+    "Name" = "demo1-vpc-${terraform.workspace}"
   }
 }
 
@@ -13,7 +13,7 @@ resource "aws_internet_gateway" "internet_gw" {
   vpc_id = aws_vpc.main.id
 
   tags = {
-    "Name" = "demo1-gw"
+    "Name" = "demo1-gw-${terraform.workspace}"
   }
 }
 
@@ -108,7 +108,7 @@ resource "aws_route_table_association" "auto_scaling_2" {
 }
 
 resource "aws_security_group" "elb_sg" {
-  name = "demo1-elb-sg"
+  name = "demo1-elb-sg-${terraform.workspace}"
   description = "Security group for load balancer"
 
   vpc_id = aws_vpc.main.id
@@ -138,12 +138,12 @@ resource "aws_security_group" "elb_sg" {
   }
 
   tags = {
-    "Name" = "demo1-elb-sg"
+    "Name" = "demo1-elb-sg-${terraform.workspace}"
   }
 }
 
 resource "aws_security_group" "public_sg" {
-  name = "demo1-ec2-sg"
+  name = "demo1-ec2-sg-${terraform.workspace}"
   description = "Security group for ec2 instances"
 
   vpc_id = aws_vpc.main.id
@@ -181,12 +181,12 @@ resource "aws_security_group" "public_sg" {
   }
 
   tags = {
-    "Name" = "demo1-ec2-sg"
+    "Name" = "demo1-ec2-sg-${terraform.workspace}"
   }
 }
 
 resource "aws_security_group" "redis_sg" {
-  name = "demo1-redis-sg"
+  name = "demo1-redis-sg-${terraform.workspace}"
   description = "Allow traffic from ec2 into redis"
   vpc_id = aws_vpc.main.id
 
@@ -206,12 +206,12 @@ resource "aws_security_group" "redis_sg" {
   }
 
   tags = {
-    "Name" = "demo1-redis-sg"
+    "Name" = "demo1-redis-sg-${terraform.workspace}"
   }
 }
 
 resource "aws_security_group" "db_sg" {
-  name = "demo1-rds-sg"
+  name = "demo1-rds-sg-${terraform.workspace}"
   description = "Security group for RDS"
   vpc_id = aws_vpc.main.id
 
@@ -231,6 +231,6 @@ resource "aws_security_group" "db_sg" {
   }
 
   tags = {
-    "Name" = "demo1-rds-sg"
+    "Name" = "demo1-rds-sg-${terraform.workspace}"
   }
 }
