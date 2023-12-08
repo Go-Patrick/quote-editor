@@ -7,21 +7,6 @@ variable "db_sg" {
   description = "Security group for RDS instance"
 }
 
-variable "ec2_ami" {
-  type = string
-  description = "AMI to create EC2 instance to manage RDS"
-}
-
-variable "rds_control_subnet" {
-  type = string
-  description = "Subnet for EC2 control RDS"
-}
-
-variable "rds_control_sg" {
-  type = string
-  description = "Security group for EC2 control RDS"
-}
-
 variable "db_username" {
   type = string
 }

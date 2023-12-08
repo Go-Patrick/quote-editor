@@ -9,18 +9,15 @@ module "s3" {
   s3_bucket_name = var.s3_bucket_name
 }
 
-module "rds" {
-  source        = "./modules/rds"
-  db_identifier = var.db_identifier
-  db_name       = var.db_name
-  db_password   = var.db_password
-  db_sg         = [module.vpc.rds_sg.id]
-  db_username   = var.db_username
-  subnet_list = [module.vpc.subnet_rds_1.id,module.vpc.subnet_rds_2.id]
-  ec2_ami       = data.aws_ami.amazon_linux_ami.id
-  rds_control_sg = module.vpc.rds_control_sg.id
-  rds_control_subnet = module.vpc.subnet_rds_control.id
-}
+#module "rds" {
+#  source        = "./modules/rds"
+#  db_identifier = var.db_identifier
+#  db_name       = var.db_name
+#  db_password   = var.db_password
+#  db_sg         = [module.vpc.rds_sg.id]
+#  db_username   = var.db_username
+#  subnet_list = [module.vpc.subnet_rds_1.id,module.vpc.subnet_rds_2.id]
+#}
 
 module "redis" {
   source   = "./modules/redis"

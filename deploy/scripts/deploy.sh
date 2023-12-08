@@ -1,7 +1,6 @@
 #!/bin/bash
 env_file="/home/ec2-user/app/.env"
 source ${env_file}
-export ECR_TOKEN
 export IMAGE_VERSION
 export AWS_ACCESS_KEY_ID
 export AWS_SECRET_ACCESS_KEY

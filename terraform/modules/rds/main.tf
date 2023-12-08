@@ -20,23 +20,3 @@ resource "aws_db_instance" "app_db_instance" {
   db_subnet_group_name = aws_db_subnet_group.db_subnet_group.id
   skip_final_snapshot    = true
 }
-
-resource "aws_instance" "ec2_instance" {
-  ami                    = var.ec2_ami
-  instance_type          = "t2.micro"
-  key_name               = "demo1-key"
-  subnet_id              = var.rds_control_subnet
-  associate_public_ip_address = true
-  user_data = <<-EOF
-              #!/bin/bash
-              sudo yum update -y
-              sudo amazon-linux-extras install postgresql11 -y
-              sudo yum install postgresql-server -y
-              sudo service postgresql start
-              sudo chkconfig postgresql on
-              EOF
-
-  tags = {
-    Name = "EC2InstanceForRDSManagement"
-  }
-}

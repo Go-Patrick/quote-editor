@@ -7,7 +7,7 @@ rm -f /app/tmp/pids/server.pid
 yarn
 bin/rails db:prepare
 bin/rails db:migrate
-bin/rails db:seed
+#bin/rails db:seed
 
 # Then exec the container's main process (what's set as CMD in the Dockerfile).
 exec "$@"

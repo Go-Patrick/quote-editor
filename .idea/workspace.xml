@@ -5,31 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5bbccc29-cd1f-49ca-8f7c-696f5b4b0825" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/quote.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/terraform/datasource.tf" beforeDir="false" afterPath="$PROJECT_DIR$/terraform/datasource.tf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/docker-entrypoint" beforeDir="false" afterPath="$PROJECT_DIR$/bin/docker-entrypoint" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/deploy/scripts/deploy.sh" beforeDir="false" afterPath="$PROJECT_DIR$/deploy/scripts/deploy.sh" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/terraform/main.tf" beforeDir="false" afterPath="$PROJECT_DIR$/terraform/main.tf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/terraform/modules/auto_scaling/main.tf" beforeDir="false" afterPath="$PROJECT_DIR$/terraform/modules/auto_scaling/main.tf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/terraform/modules/auto_scaling/outputs.tf" beforeDir="false" afterPath="$PROJECT_DIR$/terraform/modules/auto_scaling/outputs.tf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/terraform/modules/auto_scaling/variables.tf" beforeDir="false" afterPath="$PROJECT_DIR$/terraform/modules/auto_scaling/variables.tf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/terraform/modules/code_deploy/variables.tf" beforeDir="false" afterPath="$PROJECT_DIR$/terraform/modules/code_deploy/variables.tf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/terraform/modules/ecr/main.tf" beforeDir="false" afterPath="$PROJECT_DIR$/terraform/modules/ecr/main.tf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/terraform/modules/ecr/outputs.tf" beforeDir="false" afterPath="$PROJECT_DIR$/terraform/modules/ecr/outputs.tf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/terraform/modules/ecr/variables.tf" beforeDir="false" afterPath="$PROJECT_DIR$/terraform/modules/ecr/variables.tf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/terraform/modules/load_balancer/main.tf" beforeDir="false" afterPath="$PROJECT_DIR$/terraform/modules/load_balancer/main.tf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/terraform/modules/load_balancer/variables.tf" beforeDir="false" afterPath="$PROJECT_DIR$/terraform/modules/load_balancer/variables.tf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/terraform/modules/rds/main.tf" beforeDir="false" afterPath="$PROJECT_DIR$/terraform/modules/rds/main.tf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/terraform/modules/rds/outputs.tf" beforeDir="false" afterPath="$PROJECT_DIR$/terraform/modules/rds/outputs.tf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/terraform/modules/rds/variables.tf" beforeDir="false" afterPath="$PROJECT_DIR$/terraform/modules/rds/variables.tf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/terraform/modules/redis/main.tf" beforeDir="false" afterPath="$PROJECT_DIR$/terraform/modules/redis/main.tf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/terraform/modules/redis/variables.tf" beforeDir="false" afterPath="$PROJECT_DIR$/terraform/modules/redis/variables.tf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/terraform/modules/s3/main.tf" beforeDir="false" afterPath="$PROJECT_DIR$/terraform/modules/s3/main.tf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/terraform/modules/s3/variables.tf" beforeDir="false" afterPath="$PROJECT_DIR$/terraform/modules/s3/variables.tf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/terraform/modules/vpc/main.tf" beforeDir="false" afterPath="$PROJECT_DIR$/terraform/modules/vpc/main.tf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/terraform/modules/vpc/outputs.tf" beforeDir="false" afterPath="$PROJECT_DIR$/terraform/modules/vpc/outputs.tf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/terraform/modules/vpc/variables.tf" beforeDir="false" afterPath="$PROJECT_DIR$/terraform/modules/vpc/variables.tf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/terraform/variables.tf" beforeDir="false" afterPath="$PROJECT_DIR$/terraform/variables.tf" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,21 +34,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "/home/phat/Goldenowl/Demo 1/quote-editor",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "yarn",
-    "ruby.rails.projectView.checked": "true",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/phat/Goldenowl/Demo 1/quote-editor&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;yarn&quot;,
+    &quot;ruby.rails.projectView.checked&quot;: &quot;true&quot;,
+    &quot;ruby.structure.view.model.defaults.configured&quot;: &quot;true&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="Rails.quote-editor">
     <configuration name="quote-editor" type="RailsRunConfigurationType" factoryName="Rails">
       <module name="quote-editor" />
@@ -153,7 +138,11 @@
       <updated>1701772872263</updated>
       <workItem from="1701772873525" duration="1707000" />
       <workItem from="1701829829982" duration="538000" />
-      <workItem from="1701830571702" duration="4921000" />
+      <workItem from="1701830571702" duration="9189000" />
+      <workItem from="1701916804268" duration="2213000" />
+      <workItem from="1701921483217" duration="1988000" />
+      <workItem from="1701949054876" duration="1575000" />
+      <workItem from="1702001068859" duration="1425000" />
     </task>
     <servers />
   </component>
