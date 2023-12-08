@@ -64,7 +64,7 @@ pipeline {
                             sh 'chmod +x deploy/scripts/deploy.sh'
                             sh '''
                             cd deploy
-                            aws deploy push --application-name quote-editor --s3-location s3://quote-editor-deploy-bucket/deploy.zip
+                            aws deploy push --application-name quote-editor-default --s3-location s3://quote-editor-deploy-bucket-default/deploy.zip
                             '''
                         }
                     } catch (Exception e) {
