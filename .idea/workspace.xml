@@ -5,7 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fb6acb42-80c0-4126-9875-653342b64724" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Jenkinsfile" beforeDir="false" afterPath="$PROJECT_DIR$/Jenkinsfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/deploy/scripts/deploy.sh" beforeDir="false" afterPath="$PROJECT_DIR$/deploy/scripts/deploy.sh" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,7 +55,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1702012240474</updated>
-      <workItem from="1702012241791" duration="4275000" />
+      <workItem from="1702012241791" duration="4501000" />
     </task>
     <servers />
   </component>
